@@ -1,0 +1,31 @@
+From c3cd1cf3f4f2b9e7174d822224e3dbcb07796067 Mon Sep 17 00:00:00 2001
+From: Kaito Udagawa <umireon@kaito.tokyo>
+Date: Tue, 21 Apr 2026 01:35:21 +0900
+Subject: [PATCH] Update elementwise.cc
+
+---
+ tensorflow/lite/kernels/elementwise.cc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/tensorflow/lite/kernels/elementwise.cc b/tensorflow/lite/kernels/elementwise.cc
+index 4379febbe3627f..09aa4c97efdaec 100644
+--- a/tensorflow/lite/kernels/elementwise.cc
++++ b/tensorflow/lite/kernels/elementwise.cc
+@@ -242,7 +242,7 @@ TfLiteStatus AbsEval(TfLiteContext* context, TfLiteNode* node) {
+   const TfLiteType type = input->type;
+   switch (type) {
+     case kTfLiteFloat32:
+-      return EvalImpl<float>(context, node, std::abs<float>, type);
++      return EvalImpl<float>(context, node, [](float f) { return std::abs(f); }, type);
+     case kTfLiteInt8:
+       return AbsEvalQuantized<int8_t>(context, node, type);
+     case kTfLiteInt16:
+@@ -250,7 +250,7 @@ TfLiteStatus AbsEval(TfLiteContext* context, TfLiteNode* node) {
+                  ? AbsInt16EvalImpl(context, node, type)
+                  : AbsEvalQuantized<int16_t>(context, node, type);
+     case kTfLiteInt32:
+-      return EvalImpl<int32_t>(context, node, std::abs<int32_t>, type);
++      return EvalImpl<int32_t>(context, node, [](int32_t i) { return std::abs(i); }, type);
+     default:
+       TF_LITE_KERNEL_LOG(context, "Current data type %s is not supported.",
+                          TfLiteTypeGetName(type));

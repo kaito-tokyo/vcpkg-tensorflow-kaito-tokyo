@@ -1,0 +1,29 @@
+{
+  "name": "tensorflow-lite",
+  "version": "2.14.1",
+  "description": "An Open Source Machine Learning Framework for Everyone",
+  "homepage": "https://github.com/tensorflow/tensorflow",
+  "license": "Apache-2.0",
+  "dependencies": [
+    "abseil",
+    "cpuinfo",
+    "eigen3",
+    "flatbuffers",
+    {
+      "name": "flatbuffers",
+      "host": true
+    },
+    "gemmlowp",
+    "neon2sse",
+    "pthreadpool",
+    "ruy",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}
