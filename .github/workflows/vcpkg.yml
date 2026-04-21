@@ -24,6 +24,7 @@ jobs:
     strategy:
       matrix:
         package:
+          - flatbuffers
           - ruy
         env-config:
           - name: Windows x64
